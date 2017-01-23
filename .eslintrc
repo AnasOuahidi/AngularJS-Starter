@@ -1,0 +1,30 @@
+{
+	"root": true,
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"extends": "standard",
+	"plugins": [
+		"html"
+	],
+	"globals": {
+		"_": true,
+		"$": true,
+		"validator": true
+	},
+	"rules": {
+		"space-before-function-paren": [
+			"error",
+			"never"
+		],
+		"indent": [
+			"error",
+			4
+		],
+		"arrow-parens": 0,
+		"generator-star-spacing": 0,
+		"no-debugger": 0,
+		"no-new": 0
+	}
+}
