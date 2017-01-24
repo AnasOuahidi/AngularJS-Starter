@@ -25,11 +25,11 @@ let server = new WebpackDevServer(compiler, {
     }
 })
 server.use(hotMiddleware)
-server.listen(3003, function (err) {
+server.listen(config.port, function (err) {
     if (err) {
         console.log(err)
         return
     }
     chokidar.watch(config.refresh).on('change', refresh)
-    console.log('==> Listening on http://localhost:3003')
+    console.log('==> Listening on http://localhost:' + config.port)
 })

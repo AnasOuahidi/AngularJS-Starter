@@ -3,13 +3,6 @@ const path = require('path')
 const webpack = require('webpack')
 const config = require('./config')
 
-const postcss = [
-    require('autoprefixer')({
-        browsers: ['last 2 versions', 'ie > 8']
-    }),
-    require("css-mqpacker")()
-]
-
 let webpack_base = {
     entry: config.entry,
     output: {
@@ -18,7 +11,7 @@ let webpack_base = {
         publicPath: config.assets_url
     },
     resolve: {
-        extensions: ['', '.js', '.vue', '.css', '.json'],
+        extensions: ['', '.js', '.css', '.json'],
         alias: {
             root: path.join(__dirname, '../js'),
             picker: 'pickadate/lib/picker'
@@ -40,12 +33,12 @@ let webpack_base = {
             },
             {
                 test: /\.scss$/,
-                vue: 'scss',
-                loaders: ['css', 'postcss', 'sass']
+                // vue: 'scss',
+                loaders: ['css', 'sass']
             },
             {
                 test: /\.css$/,
-                loaders: ['css', 'postcss']
+                loaders: ['css']
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf|wav)(\?.*)?$/,
@@ -64,11 +57,6 @@ let webpack_base = {
             'stage-2'
         ],
         plugins: ["transform-runtime"]
-    },
-    postcss,
-    vue: {
-        loaders: {},
-        postcss
     },
     plugins: [],
     devServer: {

@@ -3,8 +3,8 @@ module.exports = {
         app: ['./sass/app.scss', './js/app.js']
     },
     port: 3003,
-    html: false,
+    html: true,
     assets_url: '/assets/',
     assets_path: './assets/',
-    refresh: ['index.html', './templates/**/*.html', './modals/**/*.html']
+    refresh: ['index.html', './pages/**/*.html']
 }

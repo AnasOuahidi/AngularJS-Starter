@@ -14,12 +14,12 @@ webpack_base.plugins.push(
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //     compress: {
-    //         warnings: false
-    //     },
-    //     comments: false
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        },
+        comments: false
+    }),
     new AssetsPlugin({filename: config.assets_path + 'assets.json'})
 )
 
