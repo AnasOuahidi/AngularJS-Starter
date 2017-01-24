@@ -27,7 +27,7 @@ let routes = function ($stateProvider, $urlRouterProvider, USER_ROLES) {
                 return state.go('index')
             }
         } else {
-            // window.location = '/auth.html'
+            state.go('login')
         }
     })
 }

@@ -57,7 +57,7 @@ let Auth = function($q, $http, USER_ROLES, $localStorage, Factory) {
     };
 
     var isAuthorized = function(authorizedRoles) {
-        if (!angular.isArray(authorizedRoles)) {
+        if (!window.angular.isArray(authorizedRoles)) {
             authorizedRoles = [authorizedRoles];
         }
         return (isAuthenticated && authorizedRoles.indexOf(role) !== -1);

@@ -20,18 +20,18 @@ let app = function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS)
     })
 
     $scope.logout = () => {
-        this.AuthService.logout()
+        AuthService.logout()
         $state.go('login', {}, {reload: true})
     }
 
     $scope.validateInteger = (number) => {
-        return _.isInteger(number)
+        return window._.isInteger(number)
     }
 
     $scope.validateAlphanumerique = (text) => {
         let textString = text + ''
         let str = textString.replace(/\s+/g, '')
-        if (validator.isAlphanumeric(str)) {
+        if (window.validator.isAlphanumeric(str)) {
             return true
         }
         return false
@@ -48,7 +48,7 @@ let app = function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS)
     }
 
     $scope.validatePassword = (password, confirmation) => {
-        if (!this.validateLogin(password) || !this.validateLogin(confirmation)) {
+        if (!$scope.validateAlphanumerique(password) || !$scope.validateAlphanumerique(confirmation)) {
             return false
         } else {
             if (password === confirmation) {
