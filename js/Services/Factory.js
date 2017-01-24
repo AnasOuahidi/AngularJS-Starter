@@ -1,5 +1,5 @@
 export function Factory() {
-    var factory = {
+    let factory = {
         token: null,
         role: null,
         dns: 'http://localhost:8888',

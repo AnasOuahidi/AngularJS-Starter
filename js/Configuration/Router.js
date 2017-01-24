@@ -1,11 +1,19 @@
-export let router = ['$stateProvider', '$urlRouterProvider', 'USER_ROLES', routes]
-function routes($stateProvider, $urlRouterProvider, USER_ROLES) {
+let routes = function ($stateProvider, $urlRouterProvider, USER_ROLES) {
     $stateProvider
+        .state('login', {
+            cache: false,
+            url: '/login',
+            templateUrl: 'pages/page/login.html',
+            controller: 'loginCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.user]
+            }
+        })
         .state('index', {
             cache: false,
             url: '/',
             templateUrl: 'pages/page/index.html',
-            controller: 'indexCtrl as Index',
+            controller: 'indexCtrl',
             data: {
                 authorizedRoles: [USER_ROLES.admin, USER_ROLES.user]
             }
@@ -26,3 +34,4 @@ function routes($stateProvider, $urlRouterProvider, USER_ROLES) {
         }
     })
 }
+export let router = ['$stateProvider', '$urlRouterProvider', 'USER_ROLES', routes]

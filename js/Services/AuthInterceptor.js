@@ -1,5 +1,4 @@
-export let AuthInterceptor = ['$rootScope', '$q', 'AUTH_EVENTS', Auth]
-function Auth($rootScope, $q, AUTH_EVENTS) {
+let Auth = function ($rootScope, $q, AUTH_EVENTS) {
     return {
         responseError: (response) => {
             $rootScope.$broadcast({
@@ -10,3 +9,4 @@ function Auth($rootScope, $q, AUTH_EVENTS) {
         }
     }
 }
+export let AuthInterceptor = ['$rootScope', '$q', 'AUTH_EVENTS', Auth]

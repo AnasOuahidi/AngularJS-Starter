@@ -1,65 +1,74 @@
-export let AuthService = ['$http', 'USER_ROLES', '$localStorage', 'Factory', Auth]
-class Auth {
-    constructor($http, USER_ROLES, $localStorage, Factory) {
-        this.$http = $http
-        this.USER_ROLES = USER_ROLES
-        this.localStorage = $localStorage
-        this.Factory = Factory
-        this.authenticated = false
-        if (!this.localStorage.token && window.localStorage.authToken) {
-            this.localStorage.token = window.localStorage.authToken
-            delete window.localStorage.authToken
+let Auth = function($http, USER_ROLES, $localStorage, Factory) {
+    let token = $localStorage.token
+    let type = $localStorage.role
+    let isAuthenticated = false
+    let role = ''
+
+    if (token && type) {
+        useCredentials()
+    }
+
+    function storeUserCredentials(token) {
+        $localStorage.token = token
+        $localStorage.role = type
+        useCredentials()
+    }
+
+    function useCredentials() {
+        isAuthenticated = true
+        if (type === 'admin') {
+            role = USER_ROLES.admin
         }
-        if (!this.localStorage.role && window.localStorage.role) {
-            this.localStorage.role = window.localStorage.role
-            delete window.localStorage.role
+        if (type === 'user') {
+            role = USER_ROLES.user
         }
-        var token = this.localStorage.token
-        var type = this.localStorage.role
-        if (token) {
-            if (type) {
-                this.type = type
-            } else {
-                this.type = 'user'
-            }
-            this.role = this.USER_ROLES[this.type]
-            this.authenticated = true
-            this.authToken = token
-            this.Factory.token = this.authToken
-            this.Factory.role = this.role
+        Factory.token = token
+        Factory.role = role
+        // Set the token as header for your requests!
+        // $http.defaults.headers.common['X-Auth-Token'] = token;
+    }
+
+    function destroyUserCredentials() {
+        token = undefined
+        type = ''
+        role = ''
+        isAuthenticated = false
+        // $http.defaults.headers.common['X-Auth-Token'] = undefined
+        delete $localStorage.token
+        delete $localStorage.role
+        Factory.token = null
+        Factory.role = null
+    }
+
+    var login = function(login, password) {
+        $http.post(Factory.url('/auth'), {login, password}).then((response) => {
+            console.log(response.data)
+        }, (error) => {
+            console.log(error)
+        })
+    }
+
+    var logout = function() {
+        destroyUserCredentials()
+    };
+
+    var isAuthorized = function(authorizedRoles) {
+        if (!angular.isArray(authorizedRoles)) {
+            authorizedRoles = [authorizedRoles];
         }
+        return (isAuthenticated && authorizedRoles.indexOf(role) !== -1);
     }
 
-    logout() {
-        this.authenticated = false
-        this.authToken = undefined
-        this.role = undefined
-        delete this.localStorage.token
-        delete this.localStorage.role
-        this.Factory.token = null
-        this.Factory.role = null
-    }
-
-    isAuthorized(authorizedRoles) {
-        if (!window.angular.isArray(authorizedRoles)) {
-            authorizedRoles = [authorizedRoles]
+    return {
+        login: login,
+        logout: logout,
+        isAuthorized: isAuthorized,
+        isAuthenticated: function() {
+            return isAuthenticated
+        },
+        getRole: function() {
+            return role
         }
-        return (this.authenticated && authorizedRoles.indexOf(this.role) !== -1)
-    }
-
-    isAuthenticated() {
-        return this.authenticated
-    }
-
-    getToken() {
-        return this.authToken
-    }
-
-    getType() {
-        return this.type
-    }
-
-    getRole() {
-        return this.role
-    }
+    };
 }
+export let AuthService = ['$http', 'USER_ROLES', '$localStorage', 'Factory', Auth]

@@ -1,6 +1,4 @@
-export let indexCtrl = [index]
-class index {
-    constructor() {
-        $('title').html('Accueil')
-    }
+let index = function($scope) {
+    $('title').html('Accueil')
 }
+export let indexCtrl = ['$scope', index]
