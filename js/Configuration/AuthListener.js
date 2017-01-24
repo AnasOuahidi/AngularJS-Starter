@@ -1,4 +1,4 @@
-let auth = function ($rootScope, $state, Factory, AuthService, AUTH_EVENTS) {
+let auth = function($rootScope, $state, Factory, AuthService, AUTH_EVENTS) {
     $rootScope.$on('$stateChangeStart', (event, next, nextParams, fromState) => {
         if ('data' in next && 'authorizedRoles' in next.data) {
             var authorizedRoles = next.data.authorizedRoles

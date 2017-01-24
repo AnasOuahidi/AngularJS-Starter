@@ -1,4 +1,4 @@
-let Auth = function ($rootScope, $q, AUTH_EVENTS) {
+let Auth = function($rootScope, $q, AUTH_EVENTS) {
     return {
         responseError: (response) => {
             $rootScope.$broadcast({

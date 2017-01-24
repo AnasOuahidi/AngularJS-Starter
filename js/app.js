@@ -17,7 +17,7 @@ window.angular.module('starter', [
     'ui.bootstrap',
     'ngSanitize',
     'ngStorage',
-    'angularValidator',
+    'angularValidator'
 ])
     .config(router)
     .run(authListener)

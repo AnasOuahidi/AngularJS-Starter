@@ -1,4 +1,4 @@
-let routes = function ($stateProvider, $urlRouterProvider, USER_ROLES) {
+let routes = function($stateProvider, $urlRouterProvider, USER_ROLES) {
     $stateProvider
         .state('login', {
             cache: false,

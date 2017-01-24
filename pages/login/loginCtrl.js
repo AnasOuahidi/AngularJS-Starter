@@ -6,7 +6,7 @@ let login = function($scope, AuthService, $state) {
             $state.go('index', {}, {reload: true})
         }, function(err) {
             console.log(err)
-        });
-    };
+        })
+    }
 }
 export let loginCtrl = ['$scope', 'AuthService', '$state', login]
