@@ -13,10 +13,7 @@ let routes = function ($stateProvider, $urlRouterProvider, USER_ROLES) {
             cache: false,
             url: '/',
             templateUrl: 'pages/page/index.html',
-            controller: 'indexCtrl',
-            data: {
-                authorizedRoles: [USER_ROLES.admin, USER_ROLES.user]
-            }
+            controller: 'indexCtrl'
         })
     $urlRouterProvider.otherwise(($injector, $location) => {
         let state = $injector.get('$state')

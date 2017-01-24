@@ -1,20 +1,17 @@
-let Auth = function($http, USER_ROLES, $localStorage, Factory) {
-    let token = $localStorage.token
-    let type = $localStorage.role
+let Auth = function($q, $http, USER_ROLES, $localStorage, Factory) {
+    let token, type, role
     let isAuthenticated = false
-    let role = ''
+    useCredentials()
 
-    if (token && type) {
-        useCredentials()
-    }
-
-    function storeUserCredentials(token) {
+    function storeUserCredentials(token, type) {
         $localStorage.token = token
         $localStorage.role = type
         useCredentials()
     }
 
     function useCredentials() {
+        let token = $localStorage.token
+        let type = $localStorage.role
         isAuthenticated = true
         if (type === 'admin') {
             role = USER_ROLES.admin
@@ -41,10 +38,17 @@ let Auth = function($http, USER_ROLES, $localStorage, Factory) {
     }
 
     var login = function(login, password) {
-        $http.post(Factory.url('/auth'), {login, password}).then((response) => {
-            console.log(response.data)
-        }, (error) => {
-            console.log(error)
+        return $q(function(resolve, reject) {
+            $http.post(Factory.url('/auth'), {login, password}).then((response) => {
+                if (response.data.token && response.data.role) {
+                    storeUserCredentials(response.data.token, response.data.role)
+                } else {
+                    reject(response)
+                }
+                resolve(response.data)
+            }, (error) => {
+                reject(error)
+            })
         })
     }
 
@@ -71,4 +75,4 @@ let Auth = function($http, USER_ROLES, $localStorage, Factory) {
         }
     };
 }
-export let AuthService = ['$http', 'USER_ROLES', '$localStorage', 'Factory', Auth]
+export let AuthService = ['$q', '$http', 'USER_ROLES', '$localStorage', 'Factory', Auth]

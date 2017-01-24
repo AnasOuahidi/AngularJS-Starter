@@ -1,4 +1,12 @@
-let login = function($scope) {
+let login = function($scope, AuthService, $state) {
     $('title').html('Login Page!')
+    $scope.login = (data) => {
+        AuthService.login(data.username, data.password).then((data) => {
+            console.log(data)
+            $state.go('index', {}, {reload: true})
+        }, function(err) {
+            console.log(err)
+        });
+    };
 }
-export let loginCtrl = ['$scope', login]
+export let loginCtrl = ['$scope', 'AuthService', '$state', login]
