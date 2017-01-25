@@ -2,7 +2,7 @@ let app = function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS)
     $scope.$on(AUTH_EVENTS.notAuthorized, (event, args) => {
         $uibModal.open({
             animation: true,
-            templateUrl: 'modals/notAuthorized.html',
+            template: require('./../../modals/notAuthorized.html'),
             size: 'md'
         })
         $state.go('index', {}, {reload: true})
@@ -12,7 +12,7 @@ let app = function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS)
         AuthService.logout()
         $uibModal.open({
             animation: true,
-            templateUrl: 'modals/notAuthenticated.html',
+            template: require('./../../modals/notAuthenticated.html'),
             size: 'md'
         })
         $state.go('login', {}, {reload: true})

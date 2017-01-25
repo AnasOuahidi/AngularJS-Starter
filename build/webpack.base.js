@@ -33,7 +33,6 @@ let webpack_base = {
             },
             {
                 test: /\.scss$/,
-                // vue: 'scss',
                 loaders: ['css', 'sass']
             },
             {
@@ -46,6 +45,13 @@ let webpack_base = {
                 query: {
                     limit: 10,
                     name: '[name].[hash:7].[ext]'
+                }
+            },
+            {
+                test: /\.html$/,
+                loader: 'html',
+                query: {
+                    minimize: true
                 }
             }
         ]
@@ -70,7 +76,8 @@ if (config.html) {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
-            inject: true
+            inject: true,
+            favicon: 'img/favicon.png'
         })
     )
 }
