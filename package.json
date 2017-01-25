@@ -4,7 +4,7 @@
   "description": "My AngularJS Starter using Webpack and ES6 ...",
   "scripts": {
     "updates": "npm-check-updates -u",
-    "build": "rimraf assets && webpack --config ./build/webpack.prod.js",
+    "build": "rimraf assets && node ./build/generate-template.js && webpack --config ./build/webpack.prod.js",
     "dev": "node ./build/server.js",
     "gh": "npm run build && gh-pages -d dist"
   },

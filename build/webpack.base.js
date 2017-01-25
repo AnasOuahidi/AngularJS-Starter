@@ -75,7 +75,7 @@ if (config.html) {
     webpack_base.plugins.push(
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html',
+            template: 'template.html',
             inject: true,
             favicon: 'img/favicon.png'
         })

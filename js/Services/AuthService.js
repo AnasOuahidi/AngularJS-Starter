@@ -14,12 +14,14 @@ let Auth = function($q, $http, USER_ROLES, $localStorage, Factory) {
     function useCredentials() {
         token = $localStorage.token
         type = $localStorage.role
-        isAuthenticated = true
         if (type === 'admin') {
             role = USER_ROLES.admin
         }
         if (type === 'user') {
             role = USER_ROLES.user
+        }
+        if (token && type && role) {
+            isAuthenticated = true
         }
         Factory.token = token
         Factory.role = role
