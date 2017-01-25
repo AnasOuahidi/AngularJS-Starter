@@ -22,14 +22,14 @@ let webpack_base = {
             {
                 test: /\.js$/,
                 loader: 'eslint',
-                exclude: [/node_modules/, /js\/Libraries\/lib/]
+                exclude: [/node_modules/]
             }
         ],
         loaders: [
             {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: [/node_modules/, /js\/Libraries\/lib/]
+                exclude: [/node_modules/]
             },
             {
                 test: /\.scss$/,
