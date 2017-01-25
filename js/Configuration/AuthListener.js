@@ -1,4 +1,4 @@
-let auth = function($rootScope, $state, Factory, AuthService, AUTH_EVENTS) {
+export let authListener = ['$rootScope', '$state', 'Factory', 'AuthService', 'AUTH_EVENTS', function($rootScope, $state, Factory, AuthService, AUTH_EVENTS) {
     $rootScope.$on('$stateChangeStart', (event, next, nextParams, fromState) => {
         if ('data' in next && 'authorizedRoles' in next.data) {
             var authorizedRoles = next.data.authorizedRoles
@@ -17,5 +17,4 @@ let auth = function($rootScope, $state, Factory, AuthService, AUTH_EVENTS) {
             }
         }
     })
-}
-export let authListener = ['$rootScope', '$state', 'Factory', 'AuthService', 'AUTH_EVENTS', auth]
+}]

@@ -1,4 +1,4 @@
-let routes = function($stateProvider, $urlRouterProvider, USER_ROLES) {
+export let router = ['$stateProvider', '$urlRouterProvider', 'USER_ROLES', function($stateProvider, $urlRouterProvider, USER_ROLES) {
     $stateProvider
         .state('login', {
             cache: false,
@@ -30,5 +30,4 @@ let routes = function($stateProvider, $urlRouterProvider, USER_ROLES) {
             state.go('login')
         }
     })
-}
-export let router = ['$stateProvider', '$urlRouterProvider', 'USER_ROLES', routes]
+}]

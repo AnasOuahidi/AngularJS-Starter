@@ -1,16 +1,16 @@
 require('./Libraries/imports')
 
-import {router} from './Configuration/Router'
-import {authListener} from './Configuration/AuthListener'
-import {AUTH_EVENTS, USER_ROLES} from './Configuration/Constants'
-import {AuthService} from './Services/AuthService'
-import {AuthInterceptor} from './Services/AuthInterceptor'
-import {Interceptor} from './Services/Interceptor'
-import {Factory} from './Services/Factory'
-import {ucfirst} from './Filters/ucfirst'
-import {appCtrl} from './Controller/appCtrl'
-import {loginCtrl} from '../pages/login/loginCtrl'
 import {indexCtrl} from '../pages/index/indexCtrl'
+import {loginCtrl} from '../pages/login/loginCtrl'
+import {appCtrl} from './Controller/appCtrl'
+import {ucfirst} from './Filters/ucfirst'
+import {Factory} from './Services/Factory'
+import {Interceptor} from './Services/Interceptor'
+import {AuthInterceptor} from './Services/AuthInterceptor'
+import {AuthService} from './Services/AuthService'
+import {AUTH_EVENTS, USER_ROLES} from './Configuration/Constants'
+import {authListener} from './Configuration/AuthListener'
+import {router} from './Configuration/Router'
 
 window.angular.module('starter', [
     'ui.router',

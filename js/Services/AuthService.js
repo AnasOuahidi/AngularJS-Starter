@@ -1,4 +1,4 @@
-let Auth = function($q, $http, USER_ROLES, $localStorage, Factory) {
+export let AuthService = ['$q', '$http', 'USER_ROLES', '$localStorage', 'Factory', function($q, $http, USER_ROLES, $localStorage, Factory) {
     let token
     let type
     let role
@@ -78,5 +78,4 @@ let Auth = function($q, $http, USER_ROLES, $localStorage, Factory) {
             return role
         }
     }
-}
-export let AuthService = ['$q', '$http', 'USER_ROLES', '$localStorage', 'Factory', Auth]
+}]

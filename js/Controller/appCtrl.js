@@ -1,4 +1,4 @@
-let app = function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS) {
+export let appCtrl = ['$scope', '$state', '$uibModal', 'AuthService', 'Factory', 'AUTH_EVENTS', function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS) {
     $scope.$on(AUTH_EVENTS.notAuthorized, (event, args) => {
         $uibModal.open({
             animation: true,
@@ -57,5 +57,4 @@ let app = function($scope, $state, $uibModal, AuthService, Factory, AUTH_EVENTS)
             }
         }
     }
-}
-export let appCtrl = ['$scope', '$state', '$uibModal', 'AuthService', 'Factory', 'AUTH_EVENTS', app]
+}]

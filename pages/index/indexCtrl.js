@@ -1,4 +1,3 @@
-let index = function($scope) {
+export let indexCtrl = ['$scope', function($scope) {
     $('title').html('Accueil')
-}
-export let indexCtrl = ['$scope', index]
+}]
