@@ -3,7 +3,7 @@ let routes = function($stateProvider, $urlRouterProvider, USER_ROLES) {
         .state('login', {
             cache: false,
             url: '/login',
-            templateUrl: 'pages/page/login.html',
+            templateUrl: 'pages/login/login.html',
             controller: 'loginCtrl',
             data: {
                 authorizedRoles: [USER_ROLES.admin, USER_ROLES.user]
@@ -12,7 +12,7 @@ let routes = function($stateProvider, $urlRouterProvider, USER_ROLES) {
         .state('index', {
             cache: false,
             url: '/',
-            templateUrl: 'pages/page/index.html',
+            templateUrl: 'pages/index/index.html',
             controller: 'indexCtrl'
         })
     $urlRouterProvider.otherwise(($injector, $location) => {
