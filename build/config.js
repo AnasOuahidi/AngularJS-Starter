@@ -6,5 +6,5 @@ module.exports = {
     html: true,
     assets_url: '/assets/',
     assets_path: './assets/',
-    refresh: ['index.html', './pages/**/*.html']
+    refresh: ['./index.html', './pages/**/*.html']
 }
