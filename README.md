@@ -20,6 +20,6 @@ npm run build
 ```
 Generate a new page
 ```
-npm run page -- pageName
+npm run page
 ```
 With Love :heart:
