@@ -78,7 +78,7 @@ rl.question('What\'s your page\'s name ? \n', (name) => {
                             if (err) return console.log(err)
                             console.log('Router.js was configured successfully !')
                         })
-                        setTimeout(function() { console.log('\n \nCheck the #' + url + ' url to see the result') }, 700)
+                        setTimeout(function() { console.log('\n \nCheck the http://localhost:8888/dev/#' + url + ' url to see the result') }, 700)
                     })
                 } else {
                     console.log(path + ' already exists !')
